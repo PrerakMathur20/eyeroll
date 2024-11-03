@@ -1,0 +1,23 @@
+{
+  "name": "eyeroll",
+  "version": "1.0.0",
+  "description": "Blog App (wink)",
+  "main": "app.js",
+  "scripts": {
+    "install": "npm install --prefix ./frontend && npm install --prefix ./backend",
+    "start": "concurrently \"npm start --prefix ./frontend\" \"npm start --prefix ./backend\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PrerakMathur20/eyeroll.git"
+  },
+  "author": "Prerak Mathur | PrerakMathur20",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/PrerakMathur20/eyeroll/issues"
+  },
+  "homepage": "https://github.com/PrerakMathur20/eyeroll#readme",
+  "devDependencies": {
+    "concurrently": "^9.0.1"
+  }
+}

@@ -46,9 +46,5 @@ Desktop.ini
 *.test.js
 *.spec.js
 
-# Ignore build artifacts for Docker
-Dockerfile
-docker-compose.yml
-
 # Ignore configuration files
 config.json
