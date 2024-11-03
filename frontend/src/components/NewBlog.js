@@ -2,6 +2,14 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import {
+  Box,
+  Button,
+  TextField,
+  Typography,
+  Alert,
+  Container,
+} from '@mui/material';
 
 function NewBlog() {
   const [title, setTitle] = useState('');
@@ -25,26 +33,58 @@ function NewBlog() {
   };
 
   return (
-    <div>
-      <h1>Create New Blog</h1>
-      {error && <p style={{ color: 'red' }}>{error}</p>}
-      <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          placeholder="Title"
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
-          required
-        />
-        <textarea
-          placeholder="Content"
-          value={content}
-          onChange={(e) => setContent(e.target.value)}
-          required
-        />
-        <button type="submit">Create Blog</button>
-      </form>
-    </div>
+    <Container maxWidth="sm">
+      <Box mt={5} display="flex" flexDirection="column" alignItems="center">
+        <Typography variant="h4" component="h1" gutterBottom>
+          Create New Blog
+        </Typography>
+
+        {error && (
+          <Alert severity="error" sx={{ width: '100%', mb: 2 }}>
+            {error}
+          </Alert>
+        )}
+
+        <Box
+          component="form"
+          onSubmit={handleSubmit}
+          noValidate
+          sx={{ width: '100%' }}
+        >
+          <TextField
+            label="Title"
+            variant="outlined"
+            fullWidth
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+            required
+            sx={{ mb: 3 }}
+          />
+
+          <TextField
+            label="Content"
+            variant="outlined"
+            multiline
+            rows={6}
+            fullWidth
+            value={content}
+            onChange={(e) => setContent(e.target.value)}
+            required
+            sx={{ mb: 3 }}
+          />
+
+          <Button
+            type="submit"
+            variant="contained"
+            color="primary"
+            size="large"
+            fullWidth
+          >
+            Create Blog
+          </Button>
+        </Box>
+      </Box>
+    </Container>
   );
 }
 

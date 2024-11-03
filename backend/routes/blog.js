@@ -38,5 +38,21 @@ router.post('/create', verifyToken, async (req, res) => {
   }
 });
 
+// Delete a blog
+router.delete('/:id', verifyToken, async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const result = await pool.query('DELETE FROM blogs WHERE id = $1 AND author = $2 RETURNING *', [id, req.userId]);
+    if (result.rowCount === 0) {
+      return res.status(404).json({ error: 'Blog not found' });
+    }
+    res.json({ message: 'Blog deleted successfully' });
+  } catch (error) {
+    console.error('Error deleting blog:', error); // Log the error
+    res.status(500).json({ error: 'Failed to delete blog' });
+  }
+});
+
 
 module.exports = router;
