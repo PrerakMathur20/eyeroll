@@ -1,0 +1,53 @@
+# Node.js
+node_modules/
+npm-debug.log
+yarn-error.log
+package-lock.json
+yarn.lock
+.env              # Environment variables
+.DS_Store         # macOS specific file
+
+# Build output
+build/            # React build output
+dist/             # Common directory for distribution files
+
+# Logs
+logs/
+*.log
+*.log.*
+
+# Dependency directories
+jspm_packages/
+coverage/
+
+# Operating System files
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+*.swp
+*.swo
+
+# IDE specific files
+.vscode/          # Visual Studio Code settings
+.idea/            # JetBrains IDE settings
+*.sublime-project
+*.sublime-workspace
+
+# Temporary files
+*.tmp
+*.temp
+
+# Miscellaneous
+*.zip
+*.tar.gz
+
+# Ignore tests
+*.test.js
+*.spec.js
+
+# Ignore build artifacts for Docker
+Dockerfile
+docker-compose.yml
+
+# Ignore configuration files
+config.json
