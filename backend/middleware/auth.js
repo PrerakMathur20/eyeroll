@@ -1,4 +1,3 @@
-// middleware/auth.js
 const jwt = require('jsonwebtoken');
 
 const verifyToken = (req, res, next) => {
@@ -7,8 +6,9 @@ const verifyToken = (req, res, next) => {
 
     jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
         if (err) return res.status(401).json({ error: "Invalid Token" });
-        req.userId = decoded.userId; // Set userId from the token
-        console.log(`Authenticated user ID: ${req.userId}`); // Debug log
+        req.username = decoded.username; // Set username from the token
+        console.log(`Authenticated username: ${req.username}`); // Debug log
+        console.log(`Decoded token: ${JSON.stringify(decoded)}`); // Debug log
         next();
     });
 };

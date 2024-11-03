@@ -28,10 +28,11 @@ Desktop.ini
 *.swo
 
 # IDE specific files
-.vscode/          # Visual Studio Code settings
+**/.vscode/
 .idea/            # JetBrains IDE settings
 *.sublime-project
 *.sublime-workspace
+**/.DS_Store
 
 # Temporary files
 *.tmp

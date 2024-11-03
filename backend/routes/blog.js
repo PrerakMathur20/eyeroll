@@ -8,7 +8,8 @@ const router = express.Router();
 // Get all blogs
 router.get('/all', verifyToken, async (req, res) => {
   try {
-    const result = await pool.query('SELECT * FROM blogs ORDER BY created_at DESC');
+    // Move the WHERE clause before the ORDER BY clause
+    const result = await pool.query('SELECT * FROM blogs WHERE author = $1 ORDER BY created_at DESC', [req.username]);
     res.json(result.rows);
   } catch (error) {
     res.status(500).json({ error: 'Failed to retrieve blogs' });
@@ -24,7 +25,7 @@ router.post('/create', verifyToken, async (req, res) => {
     return res.status(400).json({ error: 'Title and content are required' });
   }
 
-  const author = req.userId; // Get userId from the verified token
+  const author = req.username; // Use username from the verified token
 
   try {
     const result = await pool.query(
@@ -38,12 +39,13 @@ router.post('/create', verifyToken, async (req, res) => {
   }
 });
 
-// Delete a blog
+//Delete a blog
 router.delete('/:id', verifyToken, async (req, res) => {
   const { id } = req.params;
 
   try {
-    const result = await pool.query('DELETE FROM blogs WHERE id = $1 AND author = $2 RETURNING *', [id, req.userId]);
+    // Update the query to use the username instead of userId
+    const result = await pool.query('DELETE FROM blogs WHERE id = $1 AND author = $2 RETURNING *', [id, req.username]);
     if (result.rowCount === 0) {
       return res.status(404).json({ error: 'Blog not found' });
     }

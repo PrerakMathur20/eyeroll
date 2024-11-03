@@ -51,7 +51,7 @@ function BlogDashboard() {
       } finally {
         setLoading(false);
       }
-    };
+    };    
     fetchBlogs();
   }, []);
 
